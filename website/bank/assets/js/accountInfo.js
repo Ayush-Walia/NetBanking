@@ -1,0 +1,44 @@
+var userId = { userId : sessionStorage.getItem("userId")};
+
+if(document.getElementById("accountInfoPage")!=null){
+getUserInfo();
+getAccountInfo();
+}
+
+function getUserInfo(){	
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200){
+	var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
+    document.getElementById("name").innerHTML = res.userName;
+	document.getElementById("gender").innerHTML = res.userGender;
+	document.getElementById("dob").innerHTML = res.userDOB;
+	document.getElementById("userStreet").innerHTML = res.userStreet;
+	document.getElementById("userCity").innerHTML = res.userCity;
+	document.getElementById("userState").innerHTML = res.userState;
+	document.getElementById("phoneNumber").innerHTML = res.userPhoneNo;
+  }
+};
+
+xmlhttp.open("POST", "http://localhost:3000/getUserInfo", true);
+xmlhttp.setRequestHeader("Content-Type", "application/json");
+xmlhttp.send(JSON.stringify(userId));	
+}
+
+function getAccountInfo(){
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200){
+	var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
+    document.getElementById("accountNumber").innerHTML = res.accountNumber;
+	document.getElementById("accountBalance").innerHTML = "₹ "+ res.accountBalance+"/-";
+	document.getElementById("cardNumber").innerHTML = res.cardNumber;
+	document.getElementById("accountType").innerHTML = res.accountType;
+	document.getElementById("branchLocation").innerHTML = res.accountBranchLocation;
+  }
+};
+
+xmlhttp.open("POST", "http://localhost:3000/getAccountInfo", true);
+xmlhttp.setRequestHeader("Content-Type", "application/json");
+xmlhttp.send(JSON.stringify(userId));	
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetBanking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/css/Material-Inputs.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
+    <link rel="stylesheet" href="assets/css/Social-Icons.css">
+</head>
+
+<body><div id="accountInfoPage"></div>
+<div><nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color:#1563be;">
+    <div class="container"><a class="navbar-brand" style="color:rgb(255,255,255);" href="summary.html">NetBanking</a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#1965be;">
+            <ul class="nav navbar-nav mr-auto">
+                <li role="presentation" class="nav-item"><a href="activity.html" class="nav-link" style="color:rgb(255,253,253);">Activity</a></li>
+                <li role="presentation" class="nav-item"><a href="transferMoney.html" class="nav-link" style="color:rgb(255,255,255);">Transfer Money</a></li>
+                <li role="presentation" class="nav-item"><a href="accountInfo.html" class="nav-link" style="color:rgb(255,255,255);">Account Info</a></li>
+                <li role="presentation" class="nav-item"><a href="settings.html" class="nav-link" style="color:rgb(255,255,255);">Settings</a></li>
+                <li role="presentation" class="nav-item"><a href="help.html" class="nav-link" style="color:rgb(255,255,255);">Help</a></li>
+            </ul><button class="btn btn-primary" type="button" onclick="window.location.replace('index.html')" style="background-color:rgb(46,185,245);">Logout</button><span class="navbar-text actions"></span></div>
+    </div>
+</nav></div><div class="features-boxed">
+    <div class="container">
+        <div class="intro"></div>
+        <div class="row justify-content-center features">
+           <div class="col"> 
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <h3 class="name">Name:</h3>
+                    <p class="description" id="name">{name}</p>
+                    <h3 class="name">Gender:</h3>
+                    <p class="description" id="gender">{gender}</p>
+                    <h3 class="name">Date of Birth:</h3>
+                    <p class="description" id="dob">{dob}</p>
+                </div>
+            </div>
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <h3 class="name">Address:</h3>
+                    <p class="description" id="userStreet">{userStreet}</p>
+                    <p class="description" id="userCity">{userCity}</p>
+                    <p class="description" id="userState">{userState}</p>
+                </div>
+            </div>
+         </div> 
+         <div class="col"> 
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <h3 class="name">Account Balance:</h3>
+                    <p class="description" id="accountBalance">{accountBalance}</p>
+                </div>
+            </div>
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <h3 class="name">Account Number:</h3>
+                    <p class="description" id="accountNumber">{accountNo}</p>
+                    <h3 class="name">Card Number:</h3>
+                    <p class="description" id="cardNumber">{CardNo}</p>
+                </div>
+            </div>
+         </div>  
+         <div class="col"> 
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <h3 class="name">Contact Number:</h3>
+                    <p class="description" id="phoneNumber">{phoneNo}</p>
+                </div>
+            </div>             
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <h3 class="name">Account Type:</h3>
+                    <p class="description" id="accountType">{accountType}</p>
+                </div>
+            </div>
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <h3 class="name">Branch location:</h3>
+                    <p class="description" id="branchLocation">{branchLocation}</p>
+                </div>
+            </div>
+          </div>  
+        </div>
+    </div>
+</div>
+    <div class="features-clean"><div class="container">
+    <div class="intro"></div>
+</div></div>
+    <div class="features-boxed"></div>
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro"></div>
+        </div>
+    </div>
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/accountInfo.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/Material-Inputs.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/summary.js"></script>
+</body>
+
+</html>

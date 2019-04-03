@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetBanking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/css/Material-Inputs.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
+    <link rel="stylesheet" href="assets/css/Social-Icons.css">
+</head>
+
+<body>
+    <div><div id="summaryPage"></div>
+<nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color:#1563be;">
+    <div class="container"><a class="navbar-brand" style="color:rgb(255,255,255);" href="summary.html">NetBanking</a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#1965be;">
+            <ul class="nav navbar-nav mr-auto">
+                <li role="presentation" class="nav-item"><a href="activity.html" class="nav-link" style="color:rgb(255,253,253);">Activity</a></li>
+                <li role="presentation" class="nav-item"><a href="transferMoney.html" class="nav-link" style="color:rgb(255,255,255);">Transfer Money</a></li>
+                <li role="presentation" class="nav-item"><a href="accountInfo.html" class="nav-link" style="color:rgb(255,255,255);">Account Info</a></li>
+                <li role="presentation" class="nav-item"><a href="settings.html" class="nav-link" style="color:rgb(255,255,255);">Settings</a></li>
+                <li role="presentation" class="nav-item"><a href="help.html" class="nav-link" style="color:rgb(255,255,255);">Help</a></li>
+            </ul><button class="btn btn-primary" type="button" onclick="window.location.replace('index.html')" style="background-color:rgb(46,185,245);">Logout</button><span class="navbar-text actions"></span></div>
+    </div>
+</nav></div>
+    <div><div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h3 id="greetingMessage" value="true">Hi,{name}</h3>
+        </div>
+    </div>
+</div></div>
+    <div class="projects-horizontal">
+        <div class="container">
+            <div class="row projects"><div class="col-sm-6 item">
+    <div class="row">
+        <div class="col-md-12 col-lg-5"><a href="accountInfo.html"><img src="assets/img/accountInfo.png" class="img-fluid" /></a></div>
+        <div class="col">
+            <a href="accountInfo.html" style="color:black"><h3 class="name">Account Info</h3></a>
+            <p class="description"><strong id="accountBalance">Balance: ₹ {balance}/-</strong></p>
+        </div>
+    </div>
+</div>
+                <div class="col-sm-6 item"><div class="row">
+    <div class="col-md-12 col-lg-5 offset-lg-0"><a href="#"><a href="transferMoney.html"><img src="assets/img/transferMoney.jpg" class="img-fluid" /></a></a>
+    </div>
+    <div class="col">
+        <a href="transferMoney.html" style="color:black"><h3 class="name">Transfer Money</h3></a>
+    </div>
+</div></div><div class="col-sm-6 item">
+    <div class="row">
+        <div class="col-md-12 col-lg-5"><a href="activity.html"><img src="assets/img/allTransactions.png" height="180" width="180"/></a></div>
+        <div class="col">
+            <a href="activity.html" style="color:black"><h3 class="name">All Transactions</h3></a>
+            <p class="description"></p>
+        </div>
+    </div>
+</div><div class="col-sm-6 item">
+    <div class="row">
+        <div class="col-md-12 col-lg-5"><a href="settings.html"><img src="assets/img/settings.png" height="170" width="170"/></a></div>
+        <div class="col">
+            <a href="settings.html" style="color:black"><h3 class="name">Account Settings</h3></a>
+            <p class="description"></p>
+        </div>
+    </div>
+</div></div>
+        </div>
+    </div><div class="footer-basic">
+    <footer>
+        <p class="copyright">Copyright ©2019 NetBanking. All rights reserved<br /></p>
+    </footer>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/accountInfo.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/Material-Inputs.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/summary.js"></script>
+</body>
+
+</html>
