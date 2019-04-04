@@ -38,10 +38,10 @@
             <section class="card">
                 <h3>Send Payment To</h3>
                 <div></div>
-                <div class="group"><input style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Account Number</label></div>
-                <div class="group"><input style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Amount</label></div>
-                <div class="group"><input style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Note(Optional)</label></div>
-               <div><button class="btn btn-primary btn-block md-btn" type="button">Send</button></div>
+                <div class="group"><input  id="raccount" style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Account Number</label></div>
+                <div class="group"><input  id ="amount" style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Amount</label></div>
+                <div class="group"><input  id = "title" style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Note(Optional)</label></div>
+               <div><button class="btn btn-primary btn-block md-btn" type="button" onclick="sendMoney()">Send</button></div>
             </section>
         </div>
     </div>
@@ -52,6 +52,7 @@
     <script src="/assets/js/Material-Inputs.js"></script>
     <script src="/assets/js/settings.js"></script>
     <script src="/assets/js/summary.js"></script>
+    <script src="/assets/js/transferMoney.js"></script>
 </body>
 
 </html>

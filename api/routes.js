@@ -25,7 +25,6 @@ router.post("/getUserInfo", function (req, res) {
 });
 
 router.post("/getAccountInfo", function (req, res) {
-    console.log(req.body.userId);
     db.query("( select * from bank.account where bank.account.accountNumber in( select bank.user.account_accountNumber from bank.user where bank.user.userId = " + req.body.userId + " ) );",
         function (err, result) {
             if (err)
@@ -37,9 +36,9 @@ router.post("/getAccountInfo", function (req, res) {
 
 router.post("/sendMoney", function (req, res) {
 
-    var qryLog = "insert into bank.payment_send values (? , ? , ? , ? , ? , ?)";
-    var qryReduceBal = "upadate table  bank.account set bank.account.accountBalance = bank.account.accountBalance - ? where bank.account.accountNumber = ?";
-    var qryAddBal = "upadate table  bank.account set bank.account.accountBalance = bank.account.accountBalance + ? where bank.account.accountNumber = ?";
+    var qryLog = "insert into bank.payment_log values (? , ? , ? , ? , ? , ?)";
+    var qryReduceBal = "update bank.account set bank.account.accountBalance = bank.account.accountBalance - ? where bank.account.accountNumber = ?";
+    var qryAddBal = "update bank.account set bank.account.accountBalance = bank.account.accountBalance + ? where bank.account.accountNumber = ?";
 
     var pid = uniqid();
     var saccount = req.body.saccount;
@@ -49,9 +48,11 @@ router.post("/sendMoney", function (req, res) {
     var date = new Date();
 
 
-    db.query(qryReduceBal, [amount, saccount], function () {
-        db.query(qryAddBal, [amount, raccount], function () {
-            db.query(qryLog, [id, title, amount, date, raccount, saccount],
+    db.query(qryReduceBal, [parseInt(amount), saccount], function (err) {
+        if(err) throw err;
+        db.query(qryAddBal, [parseInt(amount), raccount], function (err) {
+            if(err) throw err;
+            db.query(qryLog, [pid, title, amount, date, raccount, saccount],
                 function (err) {
                     if (err)
                         throw err;
@@ -60,6 +61,29 @@ router.post("/sendMoney", function (req, res) {
                 });
         });
     });
+});
+
+router.post("/getSend", function (req,res) {
+    var qry = "select * from payment_log where account_accountNumber = ?";
+    db.query(qry, [req.body.account],
+        function (err, result) {
+            if (err)
+                throw err;
+            else
+                res.json(result);
+        });
+});
+
+router.post("/getRecieve", function (req,res) {
+    var qry = "select * from bank.payment_log where bank.payment_log.recieverAccountId = ?";
+    db.query(qry, [req.body.account],
+        function (err, result) {
+            if (err)
+                throw err;
+            else
+                res.json(result);
+        });
+
 });
 
 module.exports = router;
