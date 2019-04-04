@@ -10,7 +10,7 @@ router.post("/login", function (req, res) {
         if (err)
             throw err;
         if (result.length > 0)
-            res.end(JSON.stringify(result));
+            res.end(JSON.stringify(result[0]));
         res.end();
     });
 });
