@@ -1,36 +1,38 @@
-var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
-var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-var userId = { userId : userInfo.userId};
+var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000 + '/api';
 
 if(document.getElementById("summaryPage")!=null){
 getSummary();
 getBalance();
 }
 
-function getSummary(){	
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200){
-	var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
-    document.getElementById("greetingMessage").innerHTML = "Hi,"+ res.userName+"!";
-  }
-};
-
-xmlhttp.open("POST", apiMachine + "/getUserInfo", true);
-xmlhttp.setRequestHeader("Content-Type", "application/json");
-xmlhttp.send(JSON.stringify(userId));	
+function getSummary(){
+  $.ajax({
+    type: "GET",
+    url: apiMachine + '/getUserName',
+    async: true,
+    headers: {
+      token: sessionStorage.getItem("token"),
+    },
+    contentType: "application/json; charset=utf-8",
+    dataType: 'json',
+    success: function (data) {
+      document.getElementById("greetingMessage").innerHTML = "Hi,"+ data.userName+"!";
+    }
+  });
 }
 
 function getBalance(){
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200){
-	var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
-    document.getElementById("accountBalance").innerHTML = "Balance: ₹ "+ res.accountBalance+"/-";
-  }
+  $.ajax({
+    type: "GET",
+    url: apiMachine + '/getAccountBal',
+    async: true,
+    headers: {
+      token: sessionStorage.getItem("token"),
+    },
+    contentType: "application/json; charset=utf-8",
+    dataType: 'json',
+    success: function (data) {
+      document.getElementById("accountBalance").innerHTML = "Balance: ₹ "+ data.accountBalance+"/-";
+    }
+  });
 };
-
-xmlhttp.open("POST", apiMachine + "/getAccountInfo", true);
-xmlhttp.setRequestHeader("Content-Type", "application/json");
-xmlhttp.send(JSON.stringify(userId));	
-}

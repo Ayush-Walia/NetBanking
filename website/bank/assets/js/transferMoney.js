@@ -1,5 +1,5 @@
 //using form to login
-var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
+var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000 + '/api';
 
 function ConvertFormToJSON(form) {
   var array = jQuery(form).serializeArray();

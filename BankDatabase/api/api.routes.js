@@ -40,9 +40,43 @@ router.get("/getUserInfo", function (req, res) {
             if (err)
                 throw err;
             else
-                res.json(result);
+                res.json(result[0]);
         });
     })
+});
+
+router.get("/getUserName",function (req,res) {
+    var usertoken = req.headers.token;
+
+    if (!usertoken) res.end();
+
+    tokenService.verifyUserToken(usertoken, function (err, decode) {
+        if (err) res.end();
+        db.query(qry.getName, [decode.userId],
+            function (err, result) {
+                if (err)
+                    throw err;
+                else
+                    res.json(result[0]);
+            });
+    });
+})
+
+router.get("/getAccountBal", function (req, res) {
+    var usertoken = req.headers.token;
+
+    if (!usertoken) res.end();
+
+    tokenService.verifyUserToken(usertoken, function (err, decode) {
+        if (err) res.end();
+        db.query(qry.getBal, [decode.userAccount],
+            function (err, result) {
+                if (err)
+                    throw err;
+                else
+                    res.json(result[0]);
+            });
+    });
 });
 
 router.get("/getAccountInfo", function (req, res) {

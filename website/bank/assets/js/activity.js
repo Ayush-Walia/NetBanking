@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
+    var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000 + '/api';
 
     var account = JSON.parse(sessionStorage.getItem("userInfo")).account_accountNumber;
     var formData = { account : account }

@@ -1,5 +1,5 @@
 //using form to login
-var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
+var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000 + '/api';
 
 function ConvertFormToJSON(form) {
   var array = jQuery(form).serializeArray();
@@ -29,7 +29,7 @@ $(function () {
       dataType: "text",
       success: function (data) {
         if (data) {
-          sessionStorage.setItem("userInfo",data);
+          sessionStorage.setItem("token",data);
           window.location.replace('summary.html');
         } else
           document.getElementById("login_response").innerHTML = "Wrong ID or Password!";
