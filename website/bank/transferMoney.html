@@ -10,16 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
-    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
-    <link rel="stylesheet" href="assets/css/Header-Blue.css">
-    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
-    <link rel="stylesheet" href="assets/css/Material-Inputs.css">
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
-    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
-    <link rel="stylesheet" href="assets/css/Social-Icons.css">
+    <link rel="stylesheet" href="/assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="/assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="/assets/css/Google-Style-Text-Input.css">
+    <link rel="stylesheet" href="/assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="/assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/assets/css/Material-Inputs.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="/assets/css/Projects-Horizontal.css">
+    <link rel="stylesheet" href="/assets/css/Social-Icons.css">
 </head>
 
 <body><div><nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color:#1563be;">
@@ -38,20 +38,21 @@
             <section class="card">
                 <h3>Send Payment To</h3>
                 <div></div>
-                <div class="group"><input style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Account Number</label></div>
-                <div class="group"><input style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Amount</label></div>
-                <div class="group"><input style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Note(Optional)</label></div>
-               <div><button class="btn btn-primary btn-block md-btn" type="button">Send</button></div>
+                <div class="group"><input  id="raccount" style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Account Number</label></div>
+                <div class="group"><input  id ="amount" style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Amount</label></div>
+                <div class="group"><input  id = "title" style="  background-color:#f5f5f5;" type="text" required /><span class="highlight"></span><span class="bar"></span><label>Note(Optional)</label></div>
+               <div><button class="btn btn-primary btn-block md-btn" type="button" onclick="sendMoney()">Send</button></div>
             </section>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/accountInfo.js"></script>
-    <script src="assets/js/login.js"></script>
-    <script src="assets/js/Material-Inputs.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/summary.js"></script>
+    <script src="/assets/js/accountInfo.js"></script>
+    <script src="/assets/js/login.js"></script>
+    <script src="/assets/js/Material-Inputs.js"></script>
+    <script src="/assets/js/settings.js"></script>
+    <script src="/assets/js/summary.js"></script>
+    <script src="/assets/js/transferMoney.js"></script>
 </body>
 
 </html>

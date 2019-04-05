@@ -1,20 +1,39 @@
-function loginRequest(){
-var xmlhttp = new XMLHttpRequest();
-sessionStorage.setItem("userId", document.getElementById("userId").value);
-sessionStorage.setItem("userPassword", document.getElementById("userPassword").value);
-var login_credentials = { userId : sessionStorage.getItem("userId"), userPassword : sessionStorage.getItem("userPassword")};
+//using form to login
+var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
 
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    if(this.responseText == "true"){
-        window.location.replace('summary.html');
-	}
-	else if(this.responseText == "false")
-		document.getElementById("login_response").innerHTML = "Wrong ID or Password!";
-  }
-};
+function ConvertFormToJSON(form) {
+  var array = jQuery(form).serializeArray();
+  var json = {};
 
-xmlhttp.open("POST", "http://localhost:3000/login", true);
-xmlhttp.setRequestHeader("Content-Type", "application/json");
-xmlhttp.send(JSON.stringify(login_credentials));
+  jQuery.each(array, function () {
+    json[this.name] = this.value || "";
+  });
+
+  return json;
 }
+
+
+$(function () {
+
+  var form = $("#loginForm");
+
+  $(form).submit(function (event) {
+    event.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      data: JSON.stringify(ConvertFormToJSON(form)),
+      url: apiMachine + '/login',
+      async: true,
+      contentType: "application/json; charset=utf-8",
+      dataType: "text",
+      success: function (data) {
+        if (data) {
+          sessionStorage.setItem("userInfo",data);
+          window.location.replace('summary.html');
+        } else
+          document.getElementById("login_response").innerHTML = "Wrong ID or Password!";
+      }
+    });
+  });
+});

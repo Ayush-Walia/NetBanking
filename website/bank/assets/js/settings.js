@@ -1,4 +1,5 @@
-var userId = { userId : sessionStorage.getItem("userId")};
+var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+var userId = { userId : userInfo.userId};
 
 if(document.getElementById("settingsPage")!=null){
 getUserInfo();

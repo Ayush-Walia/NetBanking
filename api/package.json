@@ -8,7 +8,8 @@
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "mysql": "^2.16.0",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "uniqid": "^5.0.3"
   },
   "devDependencies": {},
   "scripts": {
