@@ -1,0 +1,11 @@
+{
+    "login"       : "select userId,account_accountNumber from user where userId = ? and userPassword= ? ;",
+    "userInfo"    : "select * from user where userId= ? ;",
+    "accountInfo" : "select * from bank.account where bank.account.accountNumber = ? ;",
+    "paymentLog"  : "insert into bank.payment_log values (? , ? , ? , ? , ? , ?)",
+    "getBal"      : "select bank.account.accountBalance from bank.account",
+    "addBal"      : "update bank.account set bank.account.accountBalance = bank.account.accountBalance + ? where bank.account.accountNumber = ?",
+    "reduceBal"   : "update bank.account set bank.account.accountBalance = bank.account.accountBalance - ? where bank.account.accountNumber = ?",
+    "send"        : "select * from payment_log where account_accountNumber = ?",
+    "recieve"     : "select * from bank.payment_log where account_accountNumber = ? and bank.payment_log.recieverAccountId = ?"
+}

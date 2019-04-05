@@ -1,0 +1,20 @@
+{
+    "payload": {
+        "userId": "",
+        "userAccount": ""
+    },
+
+    "signToken": {
+        "issuer": "TheBankApp",
+        "subject": "user",
+        "expiresIn": "12h",
+        "algorithm": "RS256"
+    },
+
+    "verifyToken": {
+        "issuer": "TheBankApp",
+        "subject": "user",
+        "expiresIn": "12h",
+        "algorithm": ["RS256"]
+    }
+}

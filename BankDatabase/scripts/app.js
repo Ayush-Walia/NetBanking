@@ -2,7 +2,7 @@
 
 var express = require("express");
 var app = express();
-var routes = require("./routes");
+var routes = require("../api/api.routes");
 var jsonParser = require("body-parser").json;
 var logger = require("morgan");
 
@@ -19,7 +19,7 @@ app.use(function(req, res, next){
 	next();
 });
 
-app.use(routes);
+app.use("/api",routes);
 
 app.use(function(req, res, next){
     var err = new Error("Not Found!");
@@ -39,5 +39,5 @@ app.use(function(err, req, res, next){
 var port = process.env.PORT || 3000;
 
 app.listen(port,function(){
-    console.log("server listening on port "+port);
+    console.log("Database listening on port "+port);
 });
