@@ -6,7 +6,7 @@ var db = require("./database/database");
 var uniqid = require("uniqid");
 
 router.post("/login", function (req, res) {
-    db.query("select userId,account_accountNumber from user where userId='" + req.body.userId + "' and userPassword='" + req.body.userPassword + "';", function (err, result) {
+    db.query("select userId,account_accountNumber from user where userId=? and userPassword=?;",[req.body.userId ,req.body.userPassword] , function (err, result) {
         try{
             if (err)
                 throw err;
@@ -14,32 +14,32 @@ router.post("/login", function (req, res) {
                 res.end(JSON.stringify(result[0]));
             res.end();
         }catch(err){
-            console.log("Error in /login");
+            console.log("Error in /login "+err);
         }
     });
 });
 
 router.post("/getUserInfo", function (req, res) {
-    db.query("select * from user where userId='" + req.body.userId + "';", function (err, result) {
+    db.query("select * from user where userId=?;",[req.body.userId] , function (err, result) {
         try{
             if (err)
                 throw err;
             res.json(result);
         }catch(err){
-            console.log("Error in /getUserInfo");
+            console.log("Error in /getUserInfo "+err);
         }
     });
 });
 
 router.post("/getAccountInfo", function (req, res) {
-    db.query("( select * from account where account.accountNumber in( select user.account_accountNumber from user where user.userId = " + req.body.userId + " ) );",
+    db.query("( select * from account where account.accountNumber in( select user.account_accountNumber from user where user.userId =? ) );", [req.body.userId],
         function (err, result) {
             try{
                 if (err)
                     throw err;
                 res.json(result);
             }catch(err){
-                console.log("Error in /getAccountInfo");
+                console.log("Error in /getAccountInfo "+err);
             }    
         });
 });
@@ -76,7 +76,7 @@ router.post("/sendMoney", function (req, res) {
             if(isValidRecieverAccount==true)
             sendMoney(result[0].accountBalance);
         }catch(err){
-            console.log("Error in /sendMoney");
+            console.log("Error in /sendMoney "+err);
         }
     });
 
@@ -121,7 +121,7 @@ router.post("/getSend", function (req,res) {
                     throw err;
                 res.json(result);
             }catch(err){
-                console.log("Error in /getSend");
+                console.log("Error in /getSend "+err);
             }    
         });
 });
@@ -135,7 +135,7 @@ router.post("/getRecieve", function (req,res) {
                     throw err;
                 res.json(result);
             }catch(err){
-                console.log("Error in /getRecieve");
+                console.log("Error in /getRecieve "+err);
             }    
         });
 
@@ -150,7 +150,7 @@ router.post("/updateInfo", function (req,res) {
                 if (err)
                     throw err;
             }catch(err){
-                console.log("Error in /updateInfo userName");
+                console.log("Error in /updateInfo userName "+err);
             }    
         });
     }
@@ -161,7 +161,7 @@ router.post("/updateInfo", function (req,res) {
                 if (err)
                     throw err;
             }catch(err){
-                console.log("Error in /updateInfo userGender");
+                console.log("Error in /updateInfo userGender "+err);
             }    
         });
     }
@@ -172,7 +172,7 @@ router.post("/updateInfo", function (req,res) {
                 if (err)
                     throw err;
             }catch(err){
-                console.log("Error in /updateInfo userDOB");
+                console.log("Error in /updateInfo userDOB "+err);
             }    
         });
     }
@@ -183,7 +183,7 @@ router.post("/updateInfo", function (req,res) {
                 if (err)
                     throw err;
             }catch(err){
-                console.log("Error in /updateInfo userPhoneNo");
+                console.log("Error in /updateInfo userPhoneNo "+err);
             }    
         });
     }
@@ -196,7 +196,7 @@ router.post("/updateInfo", function (req,res) {
                     throw err;    
                 res.end(JSON.stringify(result.affectedRows));
             }catch(err){
-                console.log("Error in /updateInfo userPassword");
+                console.log("Error in /updateInfo userPassword "+err);
             }    
         });
     }
@@ -207,7 +207,7 @@ router.post("/updateInfo", function (req,res) {
                 if (err)
                     throw err;
             }catch(err){
-                console.log("Error in /updateInfo userStreet");
+                console.log("Error in /updateInfo userStreet "+err);
             }    
         });
     }
@@ -218,7 +218,7 @@ router.post("/updateInfo", function (req,res) {
                 if (err)
                     throw err;
             }catch(err){
-                console.log("Error in /updateInfo userCity");
+                console.log("Error in /updateInfo userCity "+err);
             }    
         });
     }
@@ -229,7 +229,7 @@ router.post("/updateInfo", function (req,res) {
                 if (err)
                     throw err;
             }catch(err){
-                console.log("Error in /updateInfo userState");
+                console.log("Error in /updateInfo userState "+err);
             }    
         });
     }
