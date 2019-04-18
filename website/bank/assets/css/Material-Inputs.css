@@ -60,6 +60,13 @@ form.form-inline:after {
   position:absolute;
 }
 
+@media (max-width:767px) {
+  .card{
+    padding:25px;
+    margin:40px 0px 0px -2px;
+  }
+}
+
 .btn.md-btn {
   background:#1b58cf;
   color:#fff;

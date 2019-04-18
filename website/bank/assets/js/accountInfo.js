@@ -12,7 +12,7 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200){
 	var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
-    document.getElementById("name").innerHTML = res.userName;
+  document.getElementById("name").innerHTML = res.userName;
 	document.getElementById("gender").innerHTML = res.userGender;
 	document.getElementById("dob").innerHTML = res.userDOB;
 	document.getElementById("userStreet").innerHTML = res.userStreet;

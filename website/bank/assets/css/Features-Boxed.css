@@ -1,6 +1,8 @@
 .features-boxed {
   color:#313437;
   background-color:#eef4f7;
+  background-size:100%;
+  background-repeat:no-repeat;  
 }
 
 .features-boxed p {
@@ -33,7 +35,7 @@
 }
 
 .features-boxed .features {
-  padding:50px 0;
+  padding: 42px 0;
 }
 
 .features-boxed .item {
@@ -70,4 +72,14 @@
   position:absolute;
   margin-left:450px;
 }
+
+@media (max-width:767px) {
+  .edit-button {
+    margin-left:82px;
+  }
+  .features-boxed .item .name {
+    font-size:16px;
+  }
+}
+
 

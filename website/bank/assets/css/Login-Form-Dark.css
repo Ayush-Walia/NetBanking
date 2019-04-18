@@ -1,8 +1,14 @@
 .login-dark {
-  height:625px;
   background:#475d62 url(../../assets/img/login-background.jpg);
-  background-size:cover;
-  position:relative;
+  background-size:100%;
+  background-repeat:no-repeat;
+}
+
+@media (max-width:767px) {
+  .login-dark{
+    height:625px;    
+    background-size:cover;
+  }
 }
 
 .login-dark form {
@@ -69,6 +75,4 @@
   transform:translateY(1px);
 }
 
-.forgot {
-}
 

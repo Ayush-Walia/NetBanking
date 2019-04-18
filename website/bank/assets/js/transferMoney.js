@@ -14,17 +14,20 @@ function ConvertFormToJSON(form) {
 }
 
 function sendMoney(){
+var isSummitable = true;
 if(document.getElementById("raccount").value==""){
   document.getElementsByTagName("label")[0].style="color:red;";
   document.getElementsByTagName("label")[0].innerHTML="Account Number*";
+  isSummitable = false;
 }
 
 if(document.getElementById("amount").value==""){
   document.getElementsByTagName("label")[1].style="color:red;";
   document.getElementsByTagName("label")[1].innerHTML="Amount*";
+  isSummitable = false;
 }
 
-else{
+if(isSummitable==true){
   document.getElementsByTagName("label")[0].style="color:#999;";
   document.getElementsByTagName("label")[0].innerHTML="Account Number";
   document.getElementsByTagName("label")[1].style="color:#999;";
