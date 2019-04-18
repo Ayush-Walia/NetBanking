@@ -2,10 +2,8 @@ var apiMachine = window.location.protocol + "//" + window.location.hostname + ":
 var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 var userId = { userId : userInfo.userId};
 
-if(document.getElementById("accountInfoPage")!=null){
 getUserInfo();
 getAccountInfo();
-}
 
 function getUserInfo(){	
 var xmlhttp = new XMLHttpRequest();

@@ -1,4 +1,3 @@
-if(document.getElementById("transferMoneyPage")!=null){
 //using form to login
 var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
 
@@ -64,5 +63,4 @@ if(isSummitable==true){
   xmlhttp.setRequestHeader("Content-Type", "application/json");
   xmlhttp.send(JSON.stringify(formData));
  }
-}
 }

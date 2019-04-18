@@ -1,4 +1,3 @@
-if(document.getElementById("activityPage")!=null){
 $(document).ready(function() {
 
     var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
@@ -54,4 +53,3 @@ $(document).ready(function() {
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify(formData));
 });
-}

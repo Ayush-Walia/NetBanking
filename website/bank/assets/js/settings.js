@@ -1,9 +1,7 @@
 var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 var userId = { userId : userInfo.userId};
 
-if(document.getElementById("settingsPage")!=null){
 getUserInfo();
-}
 
 var nameButtonSwitch = true;
 var contactButtonSwitch = true;
