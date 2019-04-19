@@ -1,4 +1,3 @@
-//using form to login
 var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
 
 function ConvertFormToJSON(form) {
