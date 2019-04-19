@@ -10,19 +10,22 @@
 }
 
 @media (min-width:768px) {
-  .navigation-clean-button {
-    padding-top:1rem;
-    padding-bottom:1rem;
+  .navigation-clean-button .navbar-brand:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
   }
+  .nav-link:hover{
+  border-bottom: 2px solid #fff !important;
+}
 }
 
 .navigation-clean-button .navbar-brand {
   font-weight:bold;
-  color:inherit;
+  color:#fff;
 }
 
 .navigation-clean-button .navbar-brand:hover {
-  color:#222;
+  color: #fff;
 }
 
 .navigation-clean-button .navbar-toggler {
@@ -34,7 +37,7 @@
 }
 
 .navigation-clean-button .navbar-toggler {
-  /*color:#888;*/
+  color:#888;
 }
 
 .navigation-clean-button .navbar-collapse, .navigation-clean-button .form-inline {
@@ -54,12 +57,13 @@
 }
 
 .navigation-clean-button.navbar .navbar-nav .nav-link {
+  border-bottom: 2px solid transparent;
   padding-left:18px;
   padding-right:18px;
 }
 
 .navigation-clean-button.navbar-light .navbar-nav .nav-link {
-  color:#465765;
+  color:#fff;
 }
 
 .navigation-clean-button.navbar-light .navbar-nav .nav-link:focus, .navigation-clean-button.navbar-light .navbar-nav .nav-link:hover {

@@ -14,10 +14,10 @@
 
 <body class="login-dark" style="color:rgb(33,37,41);">
     <form method="post" id="loginForm">
-        <h2 class="sr-only">Login Form</h2>
+        <h2 class="sr-only">Login Form</h2> 
         <div class="illustration"><i class="icon ion-ios-locked-outline" style="color:rgb(21,99,190);"></i></div>
-        <div class="form-group"><input type="number" name="userId" placeholder="User ID" class="form-control"/></div>
-        <div class="form-group"><input type="password" name="userPassword" placeholder="Password" class="form-control" /></div>
+        <div class="form-group"><input type="number" name="userId" placeholder="User ID" class="form-control" required/></div>
+        <div class="form-group"><input type="password" name="userPassword" placeholder="Password" class="form-control" required/></div>
         <div class="form-group"><button class="btn btn-primary btn-block" style="background-color:rgb(21,99,190);">Log In</button></div>
         <div style="color:red;text-align:center" id="login_response"></div><a href="forgotPassword.html" class="forgot">Forgot your ID or password?</a>
     </form>
