@@ -9,15 +9,18 @@ var passwordButtonSwitch = true;
 var addressButtonSwitch = true;
 var userStateValue;
 var newData;
+var dobValue;
 
 function getUserInfo(){	
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200){
   var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
+  setDobValue(res.userDOB);
+  var dob = new Date(res.userDOB);
   document.getElementById("name").innerHTML = res.userName;
-	document.getElementById("gender").innerHTML = res.userGender;
-	document.getElementById("dob").innerHTML = res.userDOB;
+  document.getElementById("gender").innerHTML = res.userGender;
+	document.getElementById("dob").innerHTML = dob.getDate()+"-"+(dob.getMonth()+1)+"-"+dob.getFullYear();
 	document.getElementById("userStreet").innerHTML = res.userStreet;
 	document.getElementById("userCity").innerHTML = res.userCity;
 	document.getElementById("userState").innerHTML = res.userState;
@@ -30,49 +33,46 @@ xmlhttp.setRequestHeader("Content-Type", "application/json");
 xmlhttp.send(JSON.stringify(userId));	
 }
 
+function setDobValue(dValue){
+  dobValue=dValue;
+}
+
 function editName(){
     if(nameButtonSwitch==true){
       var nameValue = document.getElementById("name").innerHTML;
       var genderValue = document.getElementById("gender").innerHTML;
-      var dobValue = document.getElementById("dob").innerHTML;
       $('#name').replaceWith(function(){
         return "<div class='group'><input id='name' type='text' placeholder='Name' value='"+nameValue+"' required><span class='bar'></span></div>"
       })
       $('#gender').replaceWith(function(){
-        return "<div class='group'><input id='gender' type='text' placeholder='Gender' value='"+genderValue+"' required><span class='bar'></span></div>"
+        return "<div class='group'><select id='gender'><option>Male</option><option>Female</option><option>Other</option></select></div>"
       })
       $('#dob').replaceWith(function(){
-        return "<div class='group'><input id='dob' type='text' placeholder='Date of Birth' value='"+dobValue+"' required><span class='bar'></span></div>"
+        return "<div class='group'><input id='dob' type='date' value='"+dobValue+"' placeholder='Date of Birth' value='"+dobValue+"' required><span class='bar'></span></div>"
       })
+      if(genderValue=="Male")
+      document.getElementById("gender").selectedIndex="0";
+      else if(genderValue=="Female")
+      document.getElementById("gender").selectedIndex="1";
+      else
+      document.getElementById("gender").selectedIndex="2";
       document.getElementById("nameEditButton").innerHTML="<strong>Save</strong>";
       nameButtonSwitch = false;
     }
     else{
+      var gender = document.getElementById("gender");
       var isSubmmitable = true;
       if(document.getElementById("name").value==""){
         document.getElementsByClassName("name")[0].style="color:red";
         document.getElementsByClassName("name")[0].innerHTML="Name*";
         isSubmmitable = false;
       }
-      if(document.getElementById("gender").value==""){
-        document.getElementsByClassName("name")[1].style="color:red";
-        document.getElementsByClassName("name")[1].innerHTML="Gender*";
-        isSubmmitable = false;
-      }
-      if(document.getElementById("dob").value==""){
-        document.getElementsByClassName("name")[2].style="color:red";
-        document.getElementsByClassName("name")[2].innerHTML="Date of Birth*";
-        isSubmmitable = false;
-      }
       if(isSubmmitable==true){
-      for(var i=0;i<3;i++)  
-      document.getElementsByClassName("name")[i].style="color:black";
+      document.getElementsByClassName("name")[0].style="color:black";
       document.getElementsByClassName("name")[0].innerHTML="Name:";  
-      document.getElementsByClassName("name")[1].innerHTML="Gender:";
-      document.getElementsByClassName("name")[2].innerHTML="Date of Birth:";
       newData = {
           userName: document.getElementById("name").value,
-          userGender: document.getElementById("gender").value,
+          userGender: gender.options[gender.selectedIndex].value,
           userDOB : document.getElementById("dob").value
       };
       sendUpdatedInfo(newData);
@@ -102,12 +102,15 @@ function editContact(){
     }
     else{
       var isSubmmitable = true;
-      if(document.getElementById("phoneNumber").value==""){
+      if(document.getElementById("phoneNumber").value=="" || document.getElementById("phoneNumber").value.length!=10){
         document.getElementsByClassName("name")[3].style="color:red";
         document.getElementsByClassName("name")[3].innerHTML="Contact Number*";
+        document.getElementById("contactErrors").innerHTML="Phone number should be 10 digits long!";
+        document.getElementById("contactErrors").style="color:red";
         isSubmmitable = false;
       }
       if(isSubmmitable==true){
+      document.getElementById("contactErrors").innerHTML="";
       document.getElementsByClassName("name")[3].style="color:black";
       document.getElementsByClassName("name")[3].innerHTML="Contact Number:";
       newData = {
@@ -143,6 +146,12 @@ function editPassword(){
         document.getElementsByClassName("name")[4].style="color:red";
         document.getElementsByClassName("name")[4].innerHTML="Password*";
         isSubmmitable = false;
+      }
+      var pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+      if(pattern.test(document.getElementById("newPassword").value)==false){
+        document.getElementById("passwordErrors").innerHTML="New password must contain lower case, upper case, <br>special character and Number!";
+        document.getElementById("passwordErrors").style="color:red";
+        isSubmmitable=false;
       }
       if(isSubmmitable==true){
       document.getElementsByClassName("name")[4].style="color:black";

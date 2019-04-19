@@ -10,9 +10,10 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200){
 	var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
+  var dob = new Date(res.userDOB);
   document.getElementById("name").innerHTML = res.userName;
 	document.getElementById("gender").innerHTML = res.userGender;
-	document.getElementById("dob").innerHTML = res.userDOB;
+	document.getElementById("dob").innerHTML = dob.getDate()+"-"+(dob.getMonth()+1)+"-"+dob.getFullYear();
 	document.getElementById("userStreet").innerHTML = res.userStreet;
 	document.getElementById("userCity").innerHTML = res.userCity;
 	document.getElementById("userState").innerHTML = res.userState;
@@ -30,7 +31,7 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200){
 	var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
-    document.getElementById("accountNumber").innerHTML = res.accountNumber;
+  document.getElementById("accountNumber").innerHTML = res.accountNumber;
 	document.getElementById("accountBalance").innerHTML = "₹ "+ res.accountBalance+"/-";
 	document.getElementById("cardNumber").innerHTML = res.cardNumber;
 	document.getElementById("accountType").innerHTML = res.accountType;
