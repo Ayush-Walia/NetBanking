@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetBanking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="/assets/css/Navigation-with-Button.css">
+</head>
+
+<body><div><nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color:#1563be;">
+    <div class="container"><a class="navbar-brand" href="adminSummary.html">Dashboard</a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#1965be;">
+            <ul class="nav navbar-nav mr-auto">
+                <li role="presentation" class="nav-item"><a href="allUsers.html" class="nav-link">All Users</a></li>
+                <li role="presentation" class="nav-item"><a href="adminSettings.html" class="nav-link">Settings</a></li>
+            </ul><button class="btn btn-primary" type="button" onclick="sessionStorage.removeItem('userInfo');window.location.replace('index.html')" style="background-color:rgb(46,185,245);">Logout</button><span class="navbar-text actions"></span></div>
+    </div>
+</nav></div>
+<br>
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<h3>Users List:</h3>
+<div class="table-responsive">
+<table class="table table-striped" id="usersList">
+    <tbody><tr>
+       <th>S No.</th>
+       <th>Name</th>
+       <th>Account No.</th>
+       <th>Balance</th>
+       <th>Actions</th> 
+    </tr>
+</tbody></table></div></div>
+</div></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/allUsers.js"></script>
+</body>
+
+</html>

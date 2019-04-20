@@ -237,4 +237,16 @@ router.post("/updateInfo", function (req,res) {
     res.end("true");
 });
 
+router.post("/getAllUsers", function (req, res) {
+    db.query("select user.userName,user.account_accountNumber,account.accountBalance from user inner join account on user.account_accountNumber=account.accountNumber where userId!=0;", function (err, result) {
+        try{
+            if (err)
+                throw err;
+            res.json(result);
+        }catch(err){
+            console.log("Error in /getUserInfo "+err);
+        }
+    });
+});
+
 module.exports = router;

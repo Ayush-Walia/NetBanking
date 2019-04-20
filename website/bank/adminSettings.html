@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetBanking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="/assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="/assets/css/Google-Style-Text-Input.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-with-Button.css">
+</head>
+
+<body class="features-boxed">
+<div><nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color:#1563be;">
+    <div class="container"><a class="navbar-brand" href="adminSummary.html">Dashboard</a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#1965be;">
+            <ul class="nav navbar-nav mr-auto">
+                <li role="presentation" class="nav-item"><a href="allUsers.html" class="nav-link">All Users</a></li>
+                <li role="presentation" class="nav-item"><a href="adminSettings.html" class="nav-link">Settings</a></li>
+            </ul><button class="btn btn-primary" type="button" onclick="sessionStorage.removeItem('userInfo');window.location.replace('index.html')" style="background-color:rgb(46,185,245);">Logout</button><span class="navbar-text actions"></span></div>
+    </div>
+</nav></div>
+    <div class="container">
+        <div class="intro"></div>
+        <div class="row justify-content-center features">
+           <div class="col"> 
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                   <div class="edit-button">
+                        <a style="color: #1563be;" id="nameEditButton" href="#" onclick="editName()"><strong>Edit</strong></a>
+                    </div>                    
+                    <h3 class="name">Name:</h3>
+                    <p class="description" id="name">{name}</p>
+                    <h3 class="name">Gender:</h3>
+                    <p class="description" id="gender">{gender}</p>
+                    <h3 class="name">Date of Birth:</h3>
+                    <p class="description" id="dob">{dob}</p>                     
+                </div>
+            </div>
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <div class="edit-button">
+                        <a style="color: #1563be;" id="contactEditButton" href="#" onclick="editContact()"><strong>Edit</strong></a>
+                    </div>       
+                    <h3 class="name">Contact Number:</h3>              
+                    <p class="description" id="phoneNumber">{phoneNo}</p>
+                    <p id="contactErrors"></p>
+                </div>
+            </div>			
+         </div> 
+         <div class="col"> 
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">
+                    <div class="edit-button">
+                        <a style="color: #1563be;" id="passwordEditButton" href="#" onclick="editPassword()"><strong>Edit</strong></a>
+                     </div>
+                     <h3 class="name">Password:</h3>                     
+                    <p class="description" id="userPassword">**************</p>
+                    <p id="newPassword"></p>
+                    <p id="newPasswordConfirm"></p>
+                    <p id="passwordErrors"></p>
+                </div>
+            </div>    
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                <div class="box">                    
+                    <div class="edit-button">
+                        <a style="color: #1563be;" id="addressEditButton" href="#" onclick="editAddress()"><strong>Edit</strong></a>
+                    </div> 
+                    <h3 class="name">Address:</h3>                                                           
+                    <p class="description" id="userStreet">{userStreet}</p>
+                    <p class="description" id="userCity">{userCity}</p>
+                    <p class="description" id="userState">{userState}</p>
+                  </div>				  
+			    </div>	
+            </div>			 
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/settings.js"></script>
+</body>
+
+</html>

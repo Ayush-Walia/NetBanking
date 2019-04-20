@@ -30,6 +30,9 @@ $(function () {
       success: function (data) {
         if (data) {
           sessionStorage.setItem("userInfo",data);
+          if(JSON.parse(data).userId=="0")
+          window.location.replace('adminSummary.html');
+          else
           window.location.replace('summary.html');
         } else
           document.getElementById("login_response").innerHTML = "Wrong ID or Password!";
