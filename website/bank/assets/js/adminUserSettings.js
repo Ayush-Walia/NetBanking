@@ -1,6 +1,5 @@
 var apiMachine = window.location.protocol + "//" + window.location.hostname + ":" + 3000;
-var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-var userId = { userId : userInfo.userId};
+var userId = { userId : sessionStorage.getItem("customerInfo")};
 
 getUserInfo();
 

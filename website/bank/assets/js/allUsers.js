@@ -17,7 +17,7 @@ $(document).ready(function() {
             el.append('<td>'+res[i].userName+'</td>');
             el.append('<td>'+res[i].account_accountNumber+'</td>');
             el.append('<td>'+"₹ "+res[i].accountBalance+"/-"+'</td>');
-            el.append('<td>'+"<button class='btn btn-primary' style='background-color:rgb(21,99,190);'>View Details</button>"+'</td>');
+            el.append('<td>'+"<button class='btn btn-primary' onclick='sessionStorage.setItem(\"customerInfo\","+res[i].userId+");window.location.href=\"adminUserSettings.html\"' style='background-color:rgb(21,99,190);'>View Details</button>"+'</td>');
 
             el = $("<tr></tr>");
             $("#usersList").append(el);
