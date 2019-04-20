@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetBanking</title>
+    <title>Netbanking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
@@ -15,14 +15,15 @@
 
 <body class="features-boxed">
 <div><nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color:#1563be;">
-    <div class="container"><a class="navbar-brand" href="adminSummary.html">Dashboard</a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#1965be;">
-            <ul class="nav navbar-nav mr-auto">
-                <li role="presentation" class="nav-item"><a href="allUsers.html" class="nav-link">All Users</a></li>
-                <li role="presentation" class="nav-item"><a href="adminSettings.html" class="nav-link">Settings</a></li>
-            </ul><button class="btn btn-primary" type="button" onclick="sessionStorage.removeItem('userInfo');window.location.replace('index.html')" style="background-color:rgb(46,185,245);">Logout</button><span class="navbar-text actions"></span></div>
-    </div>
-</nav></div>
+        <div class="container"><div class="navbar-brand">Netbanking</div><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#1965be;">
+                <ul class="nav navbar-nav mr-auto">
+                    <li role="presentation" class="nav-item"><a href="adminSummary.html" class="nav-link">Dashboard</a></li>
+                    <li role="presentation" class="nav-item"><a href="allUsers.html" class="nav-link" style="@media (min-width:768px){border-bottom: 2px solid #fff}">All Users</a></li>
+                    <li role="presentation" class="nav-item"><a href="adminSettings.html" class="nav-link">Settings</a></li>
+                </ul><button class="btn btn-primary" type="button" onclick="sessionStorage.removeItem('userInfo');sessionStorage.removeItem('customerInfo');window.location.replace('index.html')" style="background-color:rgb(46,185,245);">Logout</button><span class="navbar-text actions"></span></div>
+        </div>
+    </nav></div>
 <div class="container">
         <div class="intro"></div>
         <div class="row justify-content-center features">
