@@ -21,11 +21,12 @@ xmlhttp.onreadystatechange = function() {
   var dob = new Date(res.userDOB);
   document.getElementById("name").innerHTML = res.userName;
   document.getElementById("gender").innerHTML = res.userGender;
-	document.getElementById("dob").innerHTML = dob.getDate()+"-"+(dob.getMonth()+1)+"-"+dob.getFullYear();
-	document.getElementById("userStreet").innerHTML = res.userStreet;
-	document.getElementById("userCity").innerHTML = res.userCity;
-	document.getElementById("userState").innerHTML = res.userState;
-	document.getElementById("phoneNumber").innerHTML = res.userPhoneNo;
+  document.getElementById("dob").innerHTML = dob.getDate()+"-"+(dob.getMonth()+1)+"-"+dob.getFullYear();
+  document.getElementById("userStreet").innerHTML = res.userStreet;
+  document.getElementById("userCity").innerHTML = res.userCity;
+  document.getElementById("userState").innerHTML = res.userState;
+  document.getElementById("phoneNumber").innerHTML = res.userPhoneNo;
+  document.getElementById("userEmail").innerHTML = res.userEmail;
   }
 };
 
@@ -95,31 +96,63 @@ function editName(){
 function editContact(){
     if(contactButtonSwitch==true){
       var phoneNumberValue = document.getElementById("phoneNumber").innerHTML;
+      var emailValue = document.getElementById("userEmail").innerHTML;
       $('#phoneNumber').replaceWith(function(){
         return "<div class='group'><input id='phoneNumber' type='number' value='"+phoneNumberValue+"' required><span class='bar'></span></div>"
+      })
+      $('#userEmail').replaceWith(function(){
+        return "<div class='group'><input id='userEmail' type='email' value='"+emailValue+"' required><span class='bar'></span></div>"
       })
       document.getElementById("contactEditButton").innerHTML="<strong>Save</strong>";
       contactButtonSwitch = false;    
     }
     else{
       var isSubmmitable = true;
-      if(document.getElementById("phoneNumber").value=="" || document.getElementById("phoneNumber").value.length!=10){
-        document.getElementsByClassName("name")[3].style="color:red";
-        document.getElementsByClassName("name")[3].innerHTML="Contact Number*";
+      var pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      if(document.getElementById("phoneNumber").value==""){
+        document.getElementsByClassName("name")[4].style="color:red";
+        document.getElementsByClassName("name")[4].innerHTML="Contact Number*";
+        isSubmmitable = false;
+      }
+      else{
+        document.getElementsByClassName("name")[4].style="color:black";
+        document.getElementsByClassName("name")[4].innerHTML="Contact Number:";
+      }
+      if(document.getElementById("phoneNumber").value.length!=10){
+        document.getElementsByClassName("name")[4].style="color:red";
+        document.getElementsByClassName("name")[4].innerHTML="Contact Number*";
         document.getElementById("contactErrors").innerHTML="Phone number should be 10 digits long!";
         document.getElementById("contactErrors").style="color:red";
         isSubmmitable = false;
       }
+      else{
+        document.getElementById("contactErrors").innerHTML="";
+        document.getElementsByClassName("name")[4].style="color:black";
+        document.getElementsByClassName("name")[4].innerHTML="Contact Number:";
+      }
+      if(document.getElementById("userEmail").value=="" || pattern.test(document.getElementById("userEmail").value)==false){
+        document.getElementsByClassName("name")[5].style="color:red";
+        document.getElementsByClassName("name")[5].innerHTML="Email*";
+        document.getElementById("emailErrors").innerHTML="Enter a valid Email!";
+        document.getElementById("emailErrors").style="color:red";
+        isSubmmitable = false;
+      }
+      else{
+        document.getElementById("emailErrors").innerHTML="";
+        document.getElementsByClassName("name")[5].style="color:black";
+        document.getElementsByClassName("name")[5].innerHTML="Email";
+      }
       if(isSubmmitable==true){
-      document.getElementById("contactErrors").innerHTML="";
-      document.getElementsByClassName("name")[3].style="color:black";
-      document.getElementsByClassName("name")[3].innerHTML="Contact Number:";
       newData = {
-        userPhoneNo: document.getElementById("phoneNumber").value
+        userPhoneNo: document.getElementById("phoneNumber").value,
+        userEmail : document.getElementById("userEmail").value
       };
       sendUpdatedInfo(newData);      
       $('#phoneNumber').replaceWith(function(){
         return "<p class='description' id='phoneNumber'>{phoneNo}</p>"
+      })
+      $('#userEmail').replaceWith(function(){
+        return "<p class='description' id='userEmail'>{email}</p>"
       })
       document.getElementById("contactEditButton").innerHTML="<strong>Edit</strong>";
       contactButtonSwitch = true;
@@ -144,8 +177,8 @@ function editPassword(){
     else{
       var isSubmmitable = true;
       if(document.getElementById("userPassword").value=="" || document.getElementById("newPassword").value=="" || document.getElementById("newPasswordConfirm").value==""){
-        document.getElementsByClassName("name")[4].style="color:red";
-        document.getElementsByClassName("name")[4].innerHTML="Password*";
+        document.getElementsByClassName("name")[3].style="color:red";
+        document.getElementsByClassName("name")[3].innerHTML="Password*";
         isSubmmitable = false;
       }
       var pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
@@ -155,8 +188,8 @@ function editPassword(){
         isSubmmitable=false;
       }
       if(isSubmmitable==true){
-      document.getElementsByClassName("name")[4].style="color:black";
-      document.getElementsByClassName("name")[4].innerHTML="Password:";  
+      document.getElementsByClassName("name")[3].style="color:black";
+      document.getElementsByClassName("name")[3].innerHTML="Password:";  
       newData = {
         userPassword: document.getElementById("userPassword").value,
         newPassword: document.getElementById("newPassword").value
@@ -215,18 +248,18 @@ function editAddress(){
   else{
       var isSubmmitable = true;
       if(document.getElementById("userStreet").value=="" || document.getElementById("userCity").value==""){
-        document.getElementsByClassName("name")[5].style="color:red";
-        document.getElementsByClassName("name")[5].innerHTML="Address*";
+        document.getElementsByClassName("name")[6].style="color:red";
+        document.getElementsByClassName("name")[6].innerHTML="Address*";
         isSubmmitable = false;
       }
       if(userStateValue.length>0 && document.getElementById("userState").value==""){
-        document.getElementsByClassName("name")[5].style="color:red";
-        document.getElementsByClassName("name")[5].innerHTML="Address*";
+        document.getElementsByClassName("name")[6].style="color:red";
+        document.getElementsByClassName("name")[6].innerHTML="Address*";
         isSubmmitable = false;
       }
       if(isSubmmitable==true){
-      document.getElementsByClassName("name")[5].style="color:black";
-      document.getElementsByClassName("name")[5].innerHTML="Address:";  
+      document.getElementsByClassName("name")[6].style="color:black";
+      document.getElementsByClassName("name")[6].innerHTML="Address:";  
       newData = {
         userStreet: document.getElementById("userStreet").value,
         userCity: document.getElementById("userCity").value,
@@ -258,11 +291,12 @@ function sendUpdatedInfo(newData){
     if(this.readyState == 4 && this.status == 200){
       updatePassword(this.responseText);
       if(this.responseText=="true"){
+        console.log("chala?");
         location.reload();
       }
     }
   };  
-  xmlhttp.open("POST", apiMachine + "/getUserInfo", true);
+  xmlhttp.open("POST", apiMachine + "/updateInfo", true);
   xmlhttp.setRequestHeader("Content-Type", "application/json");
   xmlhttp.send(JSON.stringify(newData));	  
 }

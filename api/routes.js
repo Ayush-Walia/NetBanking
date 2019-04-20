@@ -187,6 +187,17 @@ router.post("/updateInfo", function (req,res) {
             }    
         });
     }
+    if(req.body.userEmail!=undefined){
+        db.query('update user set userEmail = ? where userId= ?',[req.body.userEmail,req.body.userId],
+        function (err) {
+            try{
+                if (err)
+                    throw err;
+            }catch(err){
+                console.log("Error in /updateInfo userEmail "+err);
+            }    
+        });
+    }
     if(req.body.userPassword!=undefined){
         requestEnded=true;
         db.query('update user set userPassword = ? where (userId= ? and userPassword = ?)',[req.body.newPassword,req.body.userId,req.body.userPassword],
@@ -233,6 +244,7 @@ router.post("/updateInfo", function (req,res) {
             }    
         });
     }
+
     if(requestEnded==false)
     res.end("true");
 });

@@ -18,6 +18,7 @@ xmlhttp.onreadystatechange = function() {
 	document.getElementById("userCity").innerHTML = res.userCity;
 	document.getElementById("userState").innerHTML = res.userState;
 	document.getElementById("phoneNumber").innerHTML = res.userPhoneNo;
+	document.getElementById("userEmail").innerHTML = res.userEmail;
   }
 };
 
