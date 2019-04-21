@@ -28,13 +28,23 @@ $(function () {
       contentType: "application/json; charset=utf-8",
       dataType: "text",
       success: function (data) {
-        if (data) {
+        if (data) {   
+          var res = JSON.parse(data);
+          if(res.userAccountStatus=="blocked"){
+            document.getElementById("login_response").innerHTML = "This Account is blocked!";
+          }
+          else if(res.userAccountStatus=="closed"){
+            document.getElementById("login_response").innerHTML = "This Account is closed!";
+          }
+          else{
           sessionStorage.setItem("userInfo",data);
           if(JSON.parse(data).userId=="0")
           window.location.replace('adminSummary.html');
           else
           window.location.replace('summary.html');
-        } else
+          }
+        } 
+        else
           document.getElementById("login_response").innerHTML = "Wrong ID or Password!";
       }
     });

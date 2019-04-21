@@ -13,6 +13,9 @@
   .nav-link:hover{
   border-bottom: 2px solid #fff !important;
 }
+  .selected{
+  border-bottom: 2px solid #fff !important;
+}
 }
 
 .navigation-clean-button .navbar-brand {

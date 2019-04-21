@@ -2,11 +2,14 @@ var apiMachine = window.location.protocol + "//" + window.location.hostname + ":
 var userId = { userId : sessionStorage.getItem("customerInfo")};
 
 getUserInfo();
+getAccountInfo(); 
 
 var nameButtonSwitch = true;
 var contactButtonSwitch = true;
 var passwordButtonSwitch = true;
 var addressButtonSwitch = true;
+var accountButtonSwitch = true;
+var branchButtonSwitch = true;
 var userStateValue;
 var newData;
 var dobValue;
@@ -19,6 +22,7 @@ xmlhttp.onreadystatechange = function() {
   setDobValue(res.userDOB);
   var dob = new Date(res.userDOB);
   document.getElementById("name").innerHTML = res.userName;
+  document.getElementById("userId").innerHTML = res.userId;
   document.getElementById("gender").innerHTML = res.userGender;
   document.getElementById("dob").innerHTML = dob.getDate()+"-"+(dob.getMonth()+1)+"-"+dob.getFullYear();
   document.getElementById("userStreet").innerHTML = res.userStreet;
@@ -26,6 +30,10 @@ xmlhttp.onreadystatechange = function() {
   document.getElementById("userState").innerHTML = res.userState;
   document.getElementById("phoneNumber").innerHTML = res.userPhoneNo;
   document.getElementById("userEmail").innerHTML = res.userEmail;
+  if(res.userAccountStatus=="blocked")
+  document.getElementById("blockButton").innerHTML = "Unblock Account";
+  else
+  document.getElementById("blockButton").innerHTML = "Block Account";
   }
 };
 
@@ -34,6 +42,22 @@ xmlhttp.setRequestHeader("Content-Type", "application/json");
 xmlhttp.send(JSON.stringify(userId));	
 }
 
+function getAccountInfo(){
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200){
+    var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
+    document.getElementById("accountNumber").innerHTML = res.accountNumber;
+    document.getElementById("cardNumber").innerHTML = res.cardNumber;
+    document.getElementById("accountType").innerHTML = res.accountType;
+    document.getElementById("branchLocation").innerHTML = res.accountBranchLocation;
+    }
+  };
+  
+  xmlhttp.open("POST", apiMachine + "/getAccountInfo", true);
+  xmlhttp.setRequestHeader("Content-Type", "application/json");
+  xmlhttp.send(JSON.stringify(userId));	
+}
 function setDobValue(dValue){
   dobValue=dValue;
 }
@@ -49,7 +73,7 @@ function editName(){
         return "<div class='group'><select id='gender'><option>Male</option><option>Female</option><option>Other</option></select></div>"
       })
       $('#dob').replaceWith(function(){
-        return "<div class='group'><input id='dob' type='date' value='"+dobValue+"' placeholder='Date of Birth' value='"+dobValue+"' required><span class='bar'></span></div>"
+        return "<div class='group'><input id='dob' type='date' value='"+dobValue+"' placeholder='Date of Birth' required><span class='bar'></span></div>"
       })
       if(genderValue=="Male")
       document.getElementById("gender").selectedIndex="0";
@@ -109,37 +133,37 @@ function editContact(){
       var isSubmmitable = true;
       var pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
       if(document.getElementById("phoneNumber").value==""){
-        document.getElementsByClassName("name")[4].style="color:red";
-        document.getElementsByClassName("name")[4].innerHTML="Contact Number*";
+        document.getElementsByClassName("name")[7].style="color:red";
+        document.getElementsByClassName("name")[7].innerHTML="Contact Number*";
         isSubmmitable = false;
       }
       else{
-        document.getElementsByClassName("name")[4].style="color:black";
-        document.getElementsByClassName("name")[4].innerHTML="Contact Number:";
+        document.getElementsByClassName("name")[7].style="color:black";
+        document.getElementsByClassName("name")[7].innerHTML="Contact Number:";
       }
       if(document.getElementById("phoneNumber").value.length!=10){
-        document.getElementsByClassName("name")[4].style="color:red";
-        document.getElementsByClassName("name")[4].innerHTML="Contact Number*";
+        document.getElementsByClassName("name")[7].style="color:red";
+        document.getElementsByClassName("name")[7].innerHTML="Contact Number*";
         document.getElementById("contactErrors").innerHTML="Phone number should be 10 digits long!";
         document.getElementById("contactErrors").style="color:red";
         isSubmmitable = false;
       }
       else{
         document.getElementById("contactErrors").innerHTML="";
-        document.getElementsByClassName("name")[4].style="color:black";
-        document.getElementsByClassName("name")[4].innerHTML="Contact Number:";
+        document.getElementsByClassName("name")[7].style="color:black";
+        document.getElementsByClassName("name")[7].innerHTML="Contact Number:";
       }
       if(document.getElementById("userEmail").value=="" || pattern.test(document.getElementById("userEmail").value)==false){
-        document.getElementsByClassName("name")[5].style="color:red";
-        document.getElementsByClassName("name")[5].innerHTML="Email*";
+        document.getElementsByClassName("name")[8].style="color:red";
+        document.getElementsByClassName("name")[8].innerHTML="Email*";
         document.getElementById("emailErrors").innerHTML="Enter a valid Email!";
         document.getElementById("emailErrors").style="color:red";
         isSubmmitable = false;
       }
       else{
         document.getElementById("emailErrors").innerHTML="";
-        document.getElementsByClassName("name")[5].style="color:black";
-        document.getElementsByClassName("name")[5].innerHTML="Email";
+        document.getElementsByClassName("name")[8].style="color:black";
+        document.getElementsByClassName("name")[8].innerHTML="Email";
       }
       if(isSubmmitable==true){
       newData = {
@@ -182,7 +206,7 @@ function editPassword(){
       }
       var pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
       if(pattern.test(document.getElementById("newPassword").value)==false){
-        document.getElementById("passwordErrors").innerHTML="New password must contain lower case, upper case, <br>special character and Number!";
+        document.getElementById("passwordErrors").innerHTML="New password must contain lower case, upper case, <br>special character, number and must be longer than 8 digits!";
         document.getElementById("passwordErrors").style="color:red";
         isSubmmitable=false;
       }
@@ -247,18 +271,18 @@ function editAddress(){
   else{
       var isSubmmitable = true;
       if(document.getElementById("userStreet").value=="" || document.getElementById("userCity").value==""){
-        document.getElementsByClassName("name")[6].style="color:red";
-        document.getElementsByClassName("name")[6].innerHTML="Address*";
+        document.getElementsByClassName("name")[9].style="color:red";
+        document.getElementsByClassName("name")[9].innerHTML="Address*";
         isSubmmitable = false;
       }
       if(userStateValue.length>0 && document.getElementById("userState").value==""){
-        document.getElementsByClassName("name")[6].style="color:red";
-        document.getElementsByClassName("name")[6].innerHTML="Address*";
+        document.getElementsByClassName("name")[9].style="color:red";
+        document.getElementsByClassName("name")[9].innerHTML="Address*";
         isSubmmitable = false;
       }
       if(isSubmmitable==true){
-      document.getElementsByClassName("name")[6].style="color:black";
-      document.getElementsByClassName("name")[6].innerHTML="Address:";  
+      document.getElementsByClassName("name")[9].style="color:black";
+      document.getElementsByClassName("name")[9].innerHTML="Address:";  
       newData = {
         userStreet: document.getElementById("userStreet").value,
         userCity: document.getElementById("userCity").value,
@@ -282,8 +306,140 @@ function editAddress(){
   }
 }
 
+function editAccount(){
+  if(accountButtonSwitch==true){
+    var userIdValue = document.getElementById("userId").innerHTML;
+    var accountNumberValue = document.getElementById("accountNumber").innerHTML;
+    var accountTypeValue = document.getElementById("accountType").innerHTML;
+    $('#userId').replaceWith(function(){
+      return "<div class='group'><input id='userId' type='number' placeholder='User ID' value='"+userIdValue+"' required><span class='bar'></span></div>"
+    })
+    $('#accountType').replaceWith(function(){
+      return "<div class='group'><select id='accountType'><option>Current</option><option>Savings</option></select></div>"
+    })
+    $('#accountNumber').replaceWith(function(){
+      return "<div class='group'><input id='accountNumber' type='number' value='"+accountNumberValue+"' placeholder='Account Number' readonly><span class='bar'></span></div>"
+    })
+    if(accountTypeValue=="Current")
+    document.getElementById("accountType").selectedIndex="0";
+    else if(accountTypeValue=="Savings")
+    document.getElementById("accountType").selectedIndex="1";
+    document.getElementById("accountEditButton").innerHTML="<strong>Save</strong>";
+    accountButtonSwitch = false;
+  }
+  else{
+    var accountType = document.getElementById("accountType");
+    var isSubmmitable = true;
+    if(document.getElementById("userId").value==""){
+      document.getElementsByClassName("name")[4].style="color:red";
+      document.getElementsByClassName("name")[4].innerHTML="User ID*";
+      isSubmmitable = false;
+    }
+    else{
+      document.getElementsByClassName("name")[4].style="color:black";
+      document.getElementsByClassName("name")[4].innerHTML="User ID";
+      isSubmmitable = true;      
+    }
+    if(document.getElementById("accountNumber").value==""){
+      document.getElementsByClassName("name")[5].style="color:red";
+      document.getElementsByClassName("name")[5].innerHTML="Account Number*";
+      isSubmmitable = false;
+    }
+    else{
+      document.getElementsByClassName("name")[5].style="color:black";
+      document.getElementsByClassName("name")[5].innerHTML="Account Number";
+      isSubmmitable = true;      
+    }    
+    if(isSubmmitable==true){
+    newData = {
+        newuserId: document.getElementById("userId").value,
+        accountType: accountType.options[accountType.selectedIndex].value
+    };
+    sendUpdatedInfo(newData);
+    $('#userId').replaceWith(function(){
+      return "<p class='description' id='userId'>{userId}</p>"
+    })
+    $('#accountNumber').replaceWith(function(){
+      return "<p class='description' id='accountNumber'>{accountNo}</p>"
+    })
+    $('#accountType').replaceWith(function(){
+      return "<p class='description' id='accountType'>{accountType}</p> "
+    })
+    document.getElementById("accountEditButton").innerHTML="<strong>Edit</strong>";      
+    accountButtonSwitch = true;
+    }  
+  }  
+}
+
+function editBranch(){
+  if(branchButtonSwitch==true){
+    var branchLocationValue = document.getElementById("branchLocation").innerHTML;
+    var cardNumberValue = document.getElementById("cardNumber").innerHTML;
+    $('#branchLocation').replaceWith(function(){
+      return "<div class='group'><input id='branchLocation' type='text' placeholder='Branch Location' value='"+branchLocationValue+"' required><span class='bar'></span></div>"
+    })
+    $('#cardNumber').replaceWith(function(){
+      return "<div class='group'><input id='cardNumber' type='number' value='"+cardNumberValue+"' placeholder='Card Number' required><span class='bar'></span></div>"
+    })
+    document.getElementById("branchEditButton").innerHTML="<strong>Save</strong>";
+    branchButtonSwitch = false;
+  }
+  else{
+    var isSubmmitable = true;
+    if(document.getElementById("branchLocation").value==""){
+      document.getElementsByClassName("name")[10].style="color:red";
+      document.getElementsByClassName("name")[10].innerHTML="Branch location*";
+      isSubmmitable = false;
+    }
+    else{
+      document.getElementsByClassName("name")[10].style="color:black";
+      document.getElementsByClassName("name")[10].innerHTML="Branch location";
+      isSubmmitable = true;      
+    }
+    if(document.getElementById("cardNumber").value==""){
+      document.getElementsByClassName("name")[11].style="color:red";
+      document.getElementsByClassName("name")[11].innerHTML="Card Number*";
+      isSubmmitable = false;
+    }
+    else{
+      document.getElementsByClassName("name")[11].style="color:black";
+      document.getElementsByClassName("name")[11].innerHTML="Card Number";
+      isSubmmitable = true;      
+    }    
+    if(isSubmmitable==true){
+    newData = {
+        newuserId: document.getElementById("userId").value,
+        accountBranchLocation: document.getElementById("branchLocation").value,
+        cardNumber : document.getElementById("cardNumber").value
+    };
+    sendUpdatedInfo(newData);
+    $('#branchLocation').replaceWith(function(){
+      return "<p class='description' id='branchLocation'>{branchLocation}</p>"
+    })
+    $('#cardNumber').replaceWith(function(){
+      return "<p class='description' id='cardNumber'>{cardNumber}</p> "
+    })
+    document.getElementById("branchEditButton").innerHTML="<strong>Edit</strong>";      
+    branchButtonSwitch = true;
+    }  
+  }  
+}
+
+function changeAccountStatus(status){
+  if(status=='block-toggle'){
+    if(document.getElementById("blockButton").innerHTML=="Block Account")
+    status = "blocked";
+    else
+    status = "";
+  }
+  newData = {
+    userAccountStatus : status
+  }
+  sendUpdatedInfo(newData);
+}
+
 function sendUpdatedInfo(newData){
-  newData["userId"]=userInfo.userId;
+  newData["userId"]=userId.userId;
   var xmlhttp = new XMLHttpRequest();
 
   xmlhttp.onreadystatechange = function() {

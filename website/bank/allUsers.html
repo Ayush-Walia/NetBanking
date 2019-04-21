@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#1965be;">
                 <ul class="nav navbar-nav mr-auto">
                     <li role="presentation" class="nav-item"><a href="adminSummary.html" class="nav-link">Dashboard</a></li>
-                    <li role="presentation" class="nav-item"><a href="allUsers.html" class="nav-link" style="@media (min-width:768px){border-bottom: 2px solid #fff}">All Users</a></li>
+                    <li role="presentation" class="nav-item"><a href="allUsers.html" class="nav-link selected">All Users</a></li>
                     <li role="presentation" class="nav-item"><a href="adminSettings.html" class="nav-link">Settings</a></li>
                 </ul><button class="btn btn-primary" type="button" onclick="sessionStorage.removeItem('userInfo');sessionStorage.removeItem('customerInfo');window.location.replace('index.html')" style="background-color:rgb(46,185,245);">Logout</button><span class="navbar-text actions"></span></div>
         </div>
@@ -24,7 +24,6 @@
 <br>
 <div class="container">
 <div class="row">
-<div class="col-md-12">
 <h3>Users List:</h3>
 <div class="table-responsive">
 <table class="table table-striped" id="usersList">

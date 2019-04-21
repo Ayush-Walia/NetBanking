@@ -19,14 +19,18 @@
             <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#1965be;">
                 <ul class="nav navbar-nav mr-auto">
                     <li role="presentation" class="nav-item"><a href="adminSummary.html" class="nav-link">Dashboard</a></li>
-                    <li role="presentation" class="nav-item"><a href="allUsers.html" class="nav-link" style="@media (min-width:768px){border-bottom: 2px solid #fff}">All Users</a></li>
+                    <li role="presentation" class="nav-item"><a href="allUsers.html" class="nav-link selected">All Users</a></li>
                     <li role="presentation" class="nav-item"><a href="adminSettings.html" class="nav-link">Settings</a></li>
                 </ul><button class="btn btn-primary" type="button" onclick="sessionStorage.removeItem('userInfo');sessionStorage.removeItem('customerInfo');window.location.replace('index.html')" style="background-color:rgb(46,185,245);">Logout</button><span class="navbar-text actions"></span></div>
         </div>
     </nav></div>
 <div class="container">
-        <div class="intro"></div>
-        <div class="row justify-content-center features">
+        <a href="allUsers.html"><button class="btn btn-primary" style="margin-top:5px;background-color:rgb(21,99,190)">Go Back</button></a>
+        <div style="margin-top:5px;float:right">
+        <button class="btn" id="blockButton" onclick="changeAccountStatus('block-toggle');" style="color:#fff;background-color:#ffc300">{Blocked Status}</button>
+        <button class="btn" onclick="changeAccountStatus('closed');" style="color:#fff;background-color:#ff5733">Close Account</button>
+        </div>
+        <div class="row justify-content-center features" style="padding-top:20px">
            <div class="col"> 
             <div class="row-sm-6 row-md-5 row-lg-4 item">
                 <div class="box">
@@ -45,14 +49,27 @@
                     <div class="box">
                         <div class="edit-button">
                             <a style="color: #1563be;" id="passwordEditButton" href="#" onclick="editPassword()"><strong>Edit</strong></a>
-                         </div>
-                         <h3 class="name">Password:</h3>                     
+                        </div>
+                        <h3 class="name">Password:</h3>                     
                         <p class="description" id="userPassword">**************</p>
                         <p id="newPassword"></p>
                         <p id="newPasswordConfirm"></p>
                         <p id="passwordErrors"></p>
                     </div>
             </div>  
+            <div class="row-sm-6 row-md-5 row-lg-4 item">
+                    <div class="box">
+                        <div class="edit-button">
+                            <a style="color: #1563be;" id="accountEditButton" href="#" onclick="editAccount()"><strong>Edit</strong></a>
+                        </div>  
+                        <h3 class="name">User ID:</h3>
+                        <p class="description" id="userId">{userId}</p>
+                        <h3 class="name">Account Number:</h3>
+                        <p class="description" id="accountNumber">{accountNo}</p>
+                        <h3 class="name">Account Type:</h3>
+                        <p class="description" id="accountType">{accountType}</p> 
+                    </div>
+            </div>
          </div>    
          <div class="col"> 
                 <div class="row-sm-6 row-md-5 row-lg-4 item">
@@ -78,7 +95,18 @@
                     <p class="description" id="userCity">{userCity}</p>
                     <p class="description" id="userState">{userState}</p>
                   </div>				  
-			    </div>	
+                </div>
+                <div class="row-sm-6 row-md-5 row-lg-4 item">
+                        <div class="box">
+                            <div class="edit-button">
+                                 <a style="color: #1563be;" id="branchEditButton" href="#" onclick="editBranch()"><strong>Edit</strong></a>
+                            </div>       
+                            <h3 class="name">Branch location:</h3>
+                            <p class="description" id="branchLocation">{branchLocation}</p>
+                            <h3 class="name">Card Number:</h3>
+                            <p class="description" id="cardNumber">{CardNo}</p>
+                        </div>
+                </div>	
             </div>			 
         </div>
     </div>

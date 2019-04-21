@@ -6,7 +6,7 @@ var db = require("./database/database");
 var uniqid = require("uniqid");
 
 router.post("/login", function (req, res) {
-    db.query("select userId,account_accountNumber from user where userId=? and userPassword=?;",[req.body.userId ,req.body.userPassword] , function (err, result) {
+    db.query("select userId,account_accountNumber,userAccountStatus from user where userId=? and userPassword=?;",[req.body.userId ,req.body.userPassword] , function (err, result) {
         try{
             if (err)
                 throw err;
@@ -241,6 +241,61 @@ router.post("/updateInfo", function (req,res) {
                     throw err;
             }catch(err){
                 console.log("Error in /updateInfo userState "+err);
+            }    
+        });
+    }
+    if(req.body.newuserId!=undefined){
+        db.query('update user set userId = ? where userId= ?',[req.body.newuserId,req.body.userId],
+        function (err) {
+            try{
+                if (err)
+                    throw err;
+            }catch(err){
+                console.log("Error in /updateInfo userId"+err);
+            }    
+        });
+    }
+    if(req.body.accountType!=undefined){
+        db.query('update account set accountType = ? where account.accountNumber in (select user.account_accountNumber from user where user.userId = ?);',[req.body.accountType,req.body.userId],
+        function (err) {
+            try{
+                if (err)
+                    throw err;
+            }catch(err){
+                console.log("Error in /updateInfo accountType "+err);
+            }    
+        });
+    }
+    if(req.body.accountBranchLocation!=undefined){
+        db.query('update account set accountBranchLocation = ? where account.accountNumber in (select user.account_accountNumber from user where user.userId = ?);',[req.body.accountBranchLocation,req.body.userId],
+        function (err) {
+            try{
+                if (err)
+                    throw err;
+            }catch(err){
+                console.log("Error in /updateInfo accountBranchLocation "+err);
+            }    
+        });
+    }
+    if(req.body.cardNumber!=undefined){
+        db.query('update account set cardNumber = ? where account.accountNumber in (select user.account_accountNumber from user where user.userId = ?);',[req.body.cardNumber,req.body.userId],
+        function (err) {
+            try{
+                if (err)
+                    throw err;
+            }catch(err){
+                console.log("Error in /updateInfo cardNumber "+err);
+            }    
+        });
+    }
+    if(req.body.userAccountStatus!=undefined){
+        db.query('update user set userAccountStatus = ? where userId = ?',[req.body.userAccountStatus,req.body.userId],
+        function (err) {
+            try{
+                if (err)
+                    throw err;
+            }catch(err){
+                console.log("Error in /updateInfo cardNumber "+err);
             }    
         });
     }
