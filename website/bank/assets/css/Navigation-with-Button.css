@@ -16,6 +16,14 @@
   .selected{
   border-bottom: 2px solid #fff !important;
 }
+  .accountButtonStyle{
+    margin-top:5px;
+    float:right;
+  }
+}
+
+.accountButtonStyle{
+  margin-top:5px;
 }
 
 .navigation-clean-button .navbar-brand {
