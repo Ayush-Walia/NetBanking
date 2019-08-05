@@ -16,7 +16,10 @@ xmlhttp.onreadystatechange = function() {
 	document.getElementById("dob").innerHTML = dob.getDate()+"-"+(dob.getMonth()+1)+"-"+dob.getFullYear();
 	document.getElementById("userStreet").innerHTML = res.userStreet;
 	document.getElementById("userCity").innerHTML = res.userCity;
+	if(res.userState != undefined)
 	document.getElementById("userState").innerHTML = res.userState;
+	else
+	document.getElementById("userState").innerHTML = "";
 	document.getElementById("phoneNumber").innerHTML = res.userPhoneNo;
 	document.getElementById("userEmail").innerHTML = res.userEmail;
   }
@@ -32,7 +35,7 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200){
 	var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
-  document.getElementById("accountNumber").innerHTML = res.accountNumber;
+  	document.getElementById("accountNumber").innerHTML = res.accountNumber;
 	document.getElementById("accountBalance").innerHTML = "₹ "+ res.accountBalance+"/-";
 	document.getElementById("cardNumber").innerHTML = res.cardNumber;
 	document.getElementById("accountType").innerHTML = res.accountType;

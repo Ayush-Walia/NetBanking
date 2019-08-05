@@ -17,14 +17,17 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200){
   var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
-  setDobValue(res.userDOB);
   var dob = new Date(res.userDOB);
+  setDobValue(dob);
   document.getElementById("name").innerHTML = res.userName;
   document.getElementById("gender").innerHTML = res.userGender;
   document.getElementById("dob").innerHTML = dob.getDate()+"-"+(dob.getMonth()+1)+"-"+dob.getFullYear();
   document.getElementById("userStreet").innerHTML = res.userStreet;
   document.getElementById("userCity").innerHTML = res.userCity;
+  if(res.userState != undefined)
   document.getElementById("userState").innerHTML = res.userState;
+  else
+  document.getElementById("userState").innerHTML = "";
   document.getElementById("phoneNumber").innerHTML = res.userPhoneNo;
   document.getElementById("userEmail").innerHTML = res.userEmail;
   }
@@ -35,8 +38,8 @@ xmlhttp.setRequestHeader("Content-Type", "application/json");
 xmlhttp.send(JSON.stringify(userId));	
 }
 
-function setDobValue(dValue){
-  dobValue=dValue;
+function setDobValue(dob){
+  dobValue=dob.getFullYear() + "-" + ("0"+(dob.getMonth()+1)).slice(-2) + "-" + dob.getDate();
 }
 
 function editName(){
@@ -50,7 +53,7 @@ function editName(){
         return "<div class='group'><select id='gender'><option>Male</option><option>Female</option><option>Other</option></select></div>"
       })
       $('#dob').replaceWith(function(){
-        return "<div class='group'><input id='dob' type='date' value='"+dobValue+"' placeholder='Date of Birth' value='"+dobValue+"' required><span class='bar'></span></div>"
+        return "<div class='group'><input id='dob' type='date' value='"+dobValue+"' placeholder='Date of Birth' required><span class='bar'></span></div>"
       })
       if(genderValue=="Male")
       document.getElementById("gender").selectedIndex="0";
@@ -85,7 +88,7 @@ function editName(){
         return "<p class='description' id='gender'>{gender}</p>"
       })
       $('#dob').replaceWith(function(){
-        return "<p class='description' id='dob'>{dob}</p> "
+        return "<p class='description' id='dob'>{dob}</p>"
       })
       document.getElementById("nameEditButton").innerHTML="<strong>Edit</strong>";      
       nameButtonSwitch = true;
@@ -206,6 +209,7 @@ function editPassword(){
 }
 
 function updatePassword(passwordChanged){
+  console.log(passwordChanged);
   if(passwordChanged=="0"){
     document.getElementById("passwordErrors").innerHTML="Old password is wrong!";
     document.getElementById("passwordErrors").style="color:red";
