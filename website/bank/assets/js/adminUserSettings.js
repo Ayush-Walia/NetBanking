@@ -19,18 +19,21 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200){
   var res = JSON.parse(this.responseText.replace(/[\[\]]/g,''));
-  setDobValue(res.userDOB);
   var dob = new Date(res.userDOB);
+  setDobValue(dob);
   document.getElementById("name").innerHTML = res.userName;
   document.getElementById("userId").innerHTML = res.userId;
   document.getElementById("gender").innerHTML = res.userGender;
   document.getElementById("dob").innerHTML = dob.getDate()+"-"+(dob.getMonth()+1)+"-"+dob.getFullYear();
   document.getElementById("userStreet").innerHTML = res.userStreet;
   document.getElementById("userCity").innerHTML = res.userCity;
+  if(res.userState != undefined)
   document.getElementById("userState").innerHTML = res.userState;
+  else
+  document.getElementById("userState").innerHTML = "";
   document.getElementById("phoneNumber").innerHTML = res.userPhoneNo;
   document.getElementById("userEmail").innerHTML = res.userEmail;
-  if(res.userAccountStatus=="blocked")
+  if(res.userAccountStatus == "blocked")
   document.getElementById("blockButton").innerHTML = "Unblock Account";
   else
   document.getElementById("blockButton").innerHTML = "Block Account";
@@ -58,8 +61,8 @@ function getAccountInfo(){
   xmlhttp.setRequestHeader("Content-Type", "application/json");
   xmlhttp.send(JSON.stringify(userId));	
 }
-function setDobValue(dValue){
-  dobValue=dValue;
+function setDobValue(dob){
+  dobValue=dob.getFullYear() + "-" + ("0"+(dob.getMonth()+1)).slice(-2) + "-" + dob.getDate();
 }
 
 function editName(){
@@ -356,6 +359,7 @@ function editAccount(){
         accountType: accountType.options[accountType.selectedIndex].value
     };
     sendUpdatedInfo(newData);
+    sessionStorage.setItem("customerInfo", document.getElementById("userId").value);
     $('#userId').replaceWith(function(){
       return "<p class='description' id='userId'>{userId}</p>"
     })

@@ -38,7 +38,7 @@ $(function () {
           }
           else{
           sessionStorage.setItem("userInfo",data);
-          if(JSON.parse(data).userId=="0")
+          if(res.userType == "admin")
           window.location.replace('adminSummary.html');
           else
           window.location.replace('summary.html');
