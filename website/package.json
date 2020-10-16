@@ -8,14 +8,14 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "compression": "^1.7.4",
-    "express": "^4.16.4",
-    "morgan": "^1.9.1",
-    "request": "^2.88.0"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "request": "^2.88.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.19.4"
   },
   "keywords": [],
   "author": "",
